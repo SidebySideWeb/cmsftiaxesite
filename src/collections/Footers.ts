@@ -123,9 +123,7 @@ export const Footers: CollectionConfig = {
               ],
               admin: {
                 components: {
-                  RowLabel: ({ data, index }) => {
-                    return data?.platform || `Social Link ${String(index).padStart(2, '0')}`
-                  },
+                  RowLabel: 'src/components/SocialLinkRowLabel#SocialLinkRowLabel',
                 },
               },
             },
