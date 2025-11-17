@@ -51,6 +51,10 @@ export const enum_footers_social_links_platform = pgEnum('enum_footers_social_li
   'other',
 ])
 
+// Forward declare media to break circular reference
+let media: any
+export { media }
+
 export const tenants = pgTable(
   'tenants',
   {
@@ -669,7 +673,7 @@ export const footers = pgTable(
   (columns) => [index('footers_tenant_idx').on(columns.tenant)],
 )
 
-export const media = pgTable(
+media = pgTable(
   'media',
   {
     id: serial('id').primaryKey(),
