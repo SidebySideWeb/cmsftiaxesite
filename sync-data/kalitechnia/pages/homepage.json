@@ -1,0 +1,18 @@
+{
+  "title": "Αρχική",
+  "slug": "home",
+  "blocks": [
+    {
+      "type": "hero",
+      "title": "Kallitechnia Gymnastics",
+      "subtitle": "Καλλιτεχνική Γυμναστική για παιδιά & εφήβους",
+      "image": "/images/hero.jpg",
+      "buttonLabel": "Μάθε περισσότερα",
+      "buttonLink": "/the-club"
+    }
+  ],
+  "seo": {
+    "title": "Kallitechnia Gymnastics | Αρχική",
+    "description": "Σύλλογος καλλιτεχνικής γυμναστικής στην Κεφαλονιά."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "menuTitle": "Main Menu",
+  "items": [
+    { "label": "Home", "page": "homepage" },
+    { "label": "Ο Σύλλογος", "page": "the-club" },
+    { "label": "Πρόγραμμα", "page": "program" },
+    { "label": "Επικοινωνία", "page": "contact" }
+  ]
+}
+

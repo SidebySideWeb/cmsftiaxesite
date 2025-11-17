@@ -1,0 +1,9 @@
+{
+  "logo": "/images/logo.png",
+  "topBar": {
+    "enabled": false,
+    "text": ""
+  },
+  "navigationMenu": "main-menu"
+}
+
