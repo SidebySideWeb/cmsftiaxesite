@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { lexicalConfig } from '../richtext/lexicalConfig'
 import { tenantReadAccess, tenantCreateAccess, tenantUpdateAccess, tenantDeleteAccess } from '../access/tenantAccess'
 import { isSuperAdmin } from '../access/roles'
 import { sharedBlocks } from '../blocks'

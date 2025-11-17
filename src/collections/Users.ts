@@ -137,7 +137,7 @@ export const Users: CollectionConfig = {
         },
         description: 'Required for Tenant Admin and Editor roles',
       },
-      validate: (value, { data, req }) => {
+      validate: (value: unknown, { data }: { data: { role?: string }; req?: unknown }) => {
         // Require tenant for non-superadmin roles
         if (data.role !== 'superadmin' && !value) {
           return 'Tenant is required for Tenant Admin and Editor roles'

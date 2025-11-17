@@ -1,4 +1,4 @@
-import type { Access, PayloadRequest, Where } from 'payload'
+import type { PayloadRequest, Where } from 'payload'
 
 /**
  * User role types
@@ -33,7 +33,7 @@ export function isEditor(req: PayloadRequest): boolean {
  * Get the tenant ID from a user object
  * Handles both direct ID and populated relationship objects
  */
-export function getTenantId(user: any): string | number | null {
+export function getTenantId(user: { tenant?: string | number | { id: string | number } | null } | null | undefined): string | number | null {
   if (!user?.tenant) return null
   
   // If tenant is a populated object, use its id

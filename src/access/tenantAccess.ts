@@ -1,4 +1,4 @@
-import type { Access, PayloadRequest, Where } from 'payload'
+import type { Access, Where } from 'payload'
 import { isSuperAdmin, getTenantId } from './roles'
 
 /**
