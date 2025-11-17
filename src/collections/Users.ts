@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Access, Where } from 'payload'
 import { isSuperAdmin, isTenantAdmin, getTenantId } from '../access/roles'
 
 export const Users: CollectionConfig = {
@@ -8,7 +8,7 @@ export const Users: CollectionConfig = {
   },
   auth: true,
   access: {
-    read: ({ req }) => {
+    read: (({ req }) => {
       // Superadmin: can see all users
       if (isSuperAdmin(req)) {
         return true
@@ -23,7 +23,7 @@ export const Users: CollectionConfig = {
           tenant: {
             equals: tenantId,
           },
-        }
+        } as Where
       }
       
       // Editor: can only read their own user record
@@ -32,11 +32,11 @@ export const Users: CollectionConfig = {
           id: {
             equals: req.user.id,
           },
-        }
+        } as Where
       }
       
       return false
-    },
+    }) as Access,
     create: ({ req }) => {
       // Superadmin: can create all users
       if (isSuperAdmin(req)) {
