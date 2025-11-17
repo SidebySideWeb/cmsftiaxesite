@@ -37,12 +37,16 @@ export function getTenantId(user: { tenant?: string | number | { id: string | nu
   if (!user?.tenant) return null
   
   // If tenant is a populated object, use its id
-  if (typeof user.tenant === 'object' && user.tenant.id) {
+  if (typeof user.tenant === 'object' && 'id' in user.tenant && user.tenant.id) {
     return user.tenant.id
   }
   
-  // If tenant is a direct ID
-  return user.tenant
+  // If tenant is a direct ID (string or number)
+  if (typeof user.tenant === 'string' || typeof user.tenant === 'number') {
+    return user.tenant
+  }
+  
+  return null
 }
 
 /**
