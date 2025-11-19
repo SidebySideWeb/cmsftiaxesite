@@ -22,6 +22,7 @@ export const tenantReadAccess: Access = ({ req }) => {
     // Tenant filtering happens via query params (where[tenant][equals]=...)
     // This allows both query access (/api/pages?where[tenant][equals]=...) 
     // and individual document access (/api/pages/49)
+    // When accessing by ID, Payload will still return the document if access returns true
     return true
   }
   
