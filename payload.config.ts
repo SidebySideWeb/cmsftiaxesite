@@ -32,6 +32,15 @@ const getServerURL = () => {
 export default buildConfig({
   serverURL: getServerURL(),
 
+  cors: [
+    'https://kallitechnia.gr',
+    'https://www.kallitechnia.gr',
+    'https://ftiaxesite.gr',
+    'https://www.ftiaxesite.gr',
+    'http://localhost:3000',
+    'http://localhost:3001',
+  ],
+
   admin: {
     user: 'users',
     importMap: {

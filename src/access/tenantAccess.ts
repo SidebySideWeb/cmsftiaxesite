@@ -5,7 +5,9 @@ import { isSuperAdmin, getTenantId } from './roles'
  * Access control helper for tenant-aware collections
  * 
  * Read access:
- * - Uses tenantFilterOrAll to filter by tenant (superadmins see all)
+ * - Public users: can read any document (tenant filtering happens via query params)
+ * - Superadmins: can see everything
+ * - Others: filtered by tenant
  * 
  * Create/Update/Delete access:
  * - Superadmins: allowed
@@ -14,9 +16,12 @@ import { isSuperAdmin, getTenantId } from './roles'
 export const tenantReadAccess: Access = ({ req }) => {
   // Allow public read access for frontend API calls
   // Frontend needs to read pages, posts, headers, footers without authentication
-  // This is safe because access is filtered by tenant, and only published/public content should be exposed
+  // This is safe because access is filtered by tenant via query params, and only published/public content should be exposed
   if (!req.user) {
-    // Public access - return true to allow reading (tenant filtering happens via query params)
+    // Public access - return true to allow reading any document
+    // Tenant filtering happens via query params (where[tenant][equals]=...)
+    // This allows both query access (/api/pages?where[tenant][equals]=...) 
+    // and individual document access (/api/pages/49)
     return true
   }
   
