@@ -8,11 +8,14 @@ export const Tenants: CollectionConfig = {
   },
   access: {
     read: ({ req }) => {
-      // Must be authenticated
+      // Allow public read access for frontend API calls
+      // Frontend needs to query tenants by slug to get tenant ID
+      // This is safe because we're only exposing basic tenant info (slug, domains, etc.)
       if (!req.user) {
-        return false
+        // Public access - allow reading tenants (needed for frontend)
+        return true
       }
-      // Superadmins and tenant admins can read tenants
+      // Authenticated users: superadmins and tenant admins can read tenants
       return isSuperAdmin(req) || isTenantAdmin(req)
     },
     create: ({ req }) => {

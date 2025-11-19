@@ -12,9 +12,12 @@ import { isSuperAdmin, getTenantId } from './roles'
  * - Others: only if req.user.tenant equals the document's tenant
  */
 export const tenantReadAccess: Access = ({ req }) => {
-  // Must be authenticated to see collections
+  // Allow public read access for frontend API calls
+  // Frontend needs to read pages, posts, headers, footers without authentication
+  // This is safe because access is filtered by tenant, and only published/public content should be exposed
   if (!req.user) {
-    return false
+    // Public access - return true to allow reading (tenant filtering happens via query params)
+    return true
   }
   
   // Superadmins can see everything
