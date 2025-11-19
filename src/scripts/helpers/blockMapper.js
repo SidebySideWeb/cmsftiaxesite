@@ -164,10 +164,18 @@ async function mapBlock(block, helpers) {
         }
       }
 
+      // Convert subtitle/description to content (richText)
+      const contentText = rest.subtitle || rest.description || "";
+      const content = contentText ? htmlToLexical(contentText) : null;
+
       return {
         blockType: "imageGallery",
         blockLabel: rest.blockLabel || "Gallery",
+        title: rest.title || "",
+        content: content,
         images: galleryItems,
+        buttonLabel: rest.buttonLabel || "",
+        buttonUrl: rest.buttonUrl || "",
       };
     }
 
@@ -203,14 +211,19 @@ async function mapBlock(block, helpers) {
       const html = rest.content || "";
       const lexical = htmlToLexical(html);
 
+      // Convert subtitle/description to content (richText) if content not provided
+      const contentText = rest.content || rest.subtitle || rest.description || rest.text || "";
+      const finalContent = contentText ? (typeof contentText === 'object' ? contentText : htmlToLexical(contentText)) : lexical;
+
       return {
         blockType: "imageText",
         blockLabel: rest.blockLabel || "Image & Text",
         title: rest.title || "",
-        subtitle: rest.subtitle || "",
+        content: finalContent,
         image: imageId,
         imagePosition: rest.imagePosition || "left",
-        content: lexical,
+        buttonLabel: rest.buttonLabel || "",
+        buttonUrl: rest.buttonUrl || "",
       };
     }
 
@@ -237,10 +250,15 @@ async function mapBlock(block, helpers) {
         // Never include id field - always let Payload auto-generate it
         // This avoids Drizzle's uniqueness validation conflicts completely
         // Payload will handle ID generation internally for array items
+        // Convert card description to content (richText)
+        const cardContentText = card.content || card.description || "";
+        const cardContent = cardContentText ? (typeof cardContentText === 'object' ? cardContentText : htmlToLexical(cardContentText)) : null;
+
         const cardItem = {
           image: cardImageId,
           title: card.title || "",
-          description: card.description || "",
+          content: cardContent,
+          description: card.description || "", // Keep for backward compatibility
           buttonLabel: card.buttonLabel || "",
           buttonUrl: card.buttonUrl || "",
         };
@@ -292,12 +310,18 @@ async function mapBlock(block, helpers) {
         });
       }
 
+      // Convert subtitle/description to content (richText)
+      const contentText = rest.subtitle || rest.description || "";
+      const content = contentText ? htmlToLexical(contentText) : null;
+
       return {
         blockType: "sponsors",
         blockLabel: rest.blockLabel || "Sponsors",
         title: rest.title || "",
-        subtitle: rest.subtitle || "",
+        content: content,
         sponsors: sponsorItems,
+        buttonLabel: rest.buttonLabel || "",
+        buttonUrl: rest.buttonUrl || "",
       };
     }
 
@@ -333,11 +357,16 @@ async function mapBlock(block, helpers) {
           );
         }
 
+        // Convert program description to content (richText)
+        const programContentText = program.content || program.description || program.additionalInfo || "";
+        const programContent = programContentText ? (typeof programContentText === 'object' ? programContentText : htmlToLexical(programContentText)) : null;
+
         const programItem = {
           title: program.title || "",
           image: programImageId,
-          description: program.description || "",
-          additionalInfo: program.additionalInfo || "",
+          content: programContent,
+          description: program.description || "", // Keep for backward compatibility
+          additionalInfo: program.additionalInfo || "", // Keep for backward compatibility
           imagePosition: program.imagePosition || "left",
           schedule: program.schedule || [],
         };
