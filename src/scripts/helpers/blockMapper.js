@@ -356,11 +356,26 @@ async function mapBlock(block, helpers) {
     }
 
     // --------------------------------------------------------------
+    // CTA BANNER BLOCK
+    // --------------------------------------------------------------
+    case "ctaBanner": {
+      return {
+        blockType: "ctaBanner",
+        blockLabel: rest.blockLabel || "CTA Banner",
+        title: rest.title || "",
+        description: rest.description || "",
+        buttonLabel: rest.buttonLabel || "",
+        buttonUrl: rest.buttonUrl || "",
+        backgroundGradient: rest.backgroundGradient || "purple-orange",
+      };
+    }
+
+    // --------------------------------------------------------------
     // FALLBACK
     // --------------------------------------------------------------
     default:
       throw new Error(
-        `Unsupported block type "${type}". Supported: hero, imageGallery, richText, imageText, cardGrid, sponsors, programs`
+        `Unsupported block type "${type}". Supported: hero, imageGallery, richText, imageText, cardGrid, sponsors, programs, ctaBanner`
       );
   }
 }
