@@ -14,10 +14,32 @@ export const RichTextBlock: Block = {
       },
     },
     {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+    },
+    {
       name: 'content',
       type: 'richText',
       label: 'Content',
-      editor: lexicalEditor({}),
+      admin: {
+        description: 'Long text with styling options, bullets, and numbered lists',
+      },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+        ],
+      }),
+    },
+    {
+      name: 'buttonLabel',
+      type: 'text',
+      label: 'Button Label',
+    },
+    {
+      name: 'buttonUrl',
+      type: 'text',
+      label: 'Button URL',
     },
   ],
 }

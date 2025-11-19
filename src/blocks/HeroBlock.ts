@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const HeroBlock: Block = {
   slug: 'hero',
@@ -18,9 +19,17 @@ export const HeroBlock: Block = {
       label: 'Title',
     },
     {
-      name: 'subtitle',
-      type: 'text',
-      label: 'Subtitle',
+      name: 'content',
+      type: 'richText',
+      label: 'Content',
+      admin: {
+        description: 'Long text with styling options, bullets, and numbered lists',
+      },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+        ],
+      }),
     },
     {
       name: 'backgroundImage',
@@ -29,14 +38,14 @@ export const HeroBlock: Block = {
       label: 'Background Image',
     },
     {
-      name: 'ctaLabel',
+      name: 'buttonLabel',
       type: 'text',
-      label: 'Call-to-Action Label',
+      label: 'Button Label',
     },
     {
-      name: 'ctaUrl',
+      name: 'buttonUrl',
       type: 'text',
-      label: 'Call-to-Action URL',
+      label: 'Button URL',
     },
   ],
 }

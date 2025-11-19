@@ -16,12 +16,20 @@ export const ImageTextBlock: Block = {
     {
       name: 'title',
       type: 'text',
-      label: 'Section Title',
+      label: 'Title',
     },
     {
-      name: 'subtitle',
-      type: 'text',
-      label: 'Subtitle',
+      name: 'content',
+      type: 'richText',
+      label: 'Content',
+      admin: {
+        description: 'Long text with styling options, bullets, and numbered lists',
+      },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+        ],
+      }),
     },
     {
       name: 'image',
@@ -40,10 +48,14 @@ export const ImageTextBlock: Block = {
       defaultValue: 'left',
     },
     {
-      name: 'content',
-      type: 'richText',
-      label: 'Text Content',
-      editor: lexicalEditor({}),
+      name: 'buttonLabel',
+      type: 'text',
+      label: 'Button Label',
+    },
+    {
+      name: 'buttonUrl',
+      type: 'text',
+      label: 'Button URL',
     },
   ],
 }

@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const CtaBannerBlock: Block = {
   slug: 'ctaBanner',
@@ -19,9 +20,17 @@ export const CtaBannerBlock: Block = {
       required: true,
     },
     {
-      name: 'description',
-      type: 'textarea',
-      label: 'Description',
+      name: 'content',
+      type: 'richText',
+      label: 'Content',
+      admin: {
+        description: 'Long text with styling options, bullets, and numbered lists',
+      },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+        ],
+      }),
     },
     {
       name: 'buttonLabel',

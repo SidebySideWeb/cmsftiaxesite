@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const ProgramsBlock: Block = {
   slug: 'programs',
@@ -15,12 +16,20 @@ export const ProgramsBlock: Block = {
     {
       name: 'title',
       type: 'text',
-      label: 'Section Title',
+      label: 'Title',
     },
     {
-      name: 'subtitle',
-      type: 'text',
-      label: 'Subtitle',
+      name: 'content',
+      type: 'richText',
+      label: 'Content',
+      admin: {
+        description: 'Long text with styling options, bullets, and numbered lists',
+      },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+        ],
+      }),
     },
     {
       name: 'programs',
@@ -40,14 +49,17 @@ export const ProgramsBlock: Block = {
           label: 'Program Image',
         },
         {
-          name: 'description',
-          type: 'textarea',
-          label: 'Description',
-        },
-        {
-          name: 'additionalInfo',
-          type: 'textarea',
-          label: 'Additional Information',
+          name: 'content',
+          type: 'richText',
+          label: 'Content',
+          admin: {
+            description: 'Long text with styling options, bullets, and numbered lists',
+          },
+          editor: lexicalEditor({
+            features: ({ defaultFeatures }) => [
+              ...defaultFeatures,
+            ],
+          }),
         },
         {
           name: 'imagePosition',
@@ -120,6 +132,16 @@ export const ProgramsBlock: Block = {
           ],
         },
       ],
+    },
+    {
+      name: 'buttonLabel',
+      type: 'text',
+      label: 'Button Label',
+    },
+    {
+      name: 'buttonUrl',
+      type: 'text',
+      label: 'Button URL',
     },
   ],
 }
