@@ -13,6 +13,16 @@ export const ImageGalleryBlock: Block = {
       },
     },
     {
+      name: 'title',
+      type: 'text',
+      label: 'Section Title',
+    },
+    {
+      name: 'subtitle',
+      type: 'text',
+      label: 'Subtitle',
+    },
+    {
       name: 'images',
       type: 'array',
       label: 'Images',
@@ -26,9 +36,20 @@ export const ImageGalleryBlock: Block = {
           label: 'Image',
         },
         {
+          name: 'title',
+          type: 'text',
+          label: 'Image Title',
+          admin: {
+            description: 'Title shown on hover (e.g., "UV Παράσταση")',
+          },
+        },
+        {
           name: 'caption',
           type: 'text',
-          label: 'Caption',
+          label: 'Caption/Description',
+          admin: {
+            description: 'Description shown on hover (e.g., "Μοναδικές στιγμές στη σκηνή")',
+          },
         },
       ],
     },
