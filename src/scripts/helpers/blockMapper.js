@@ -122,14 +122,18 @@ async function mapBlock(block, helpers) {
         );
       }
 
+      // Convert subtitle/description to content (richText)
+      const contentText = rest.subtitle || rest.description || "";
+      const content = contentText ? htmlToLexical(contentText) : null;
+
       return {
         blockType: "hero",
         blockLabel: rest.blockLabel || "Hero",
         title: rest.title || "",
-        subtitle: rest.subtitle || "",
+        content: content,
         backgroundImage: backgroundImageId,
-        ctaLabel: rest.buttonLabel || rest.button?.label || rest.ctaLabel || "",
-        ctaUrl: rest.buttonLink || rest.button?.link || rest.ctaUrl || "",
+        buttonLabel: rest.buttonLabel || rest.button?.label || rest.ctaLabel || "",
+        buttonUrl: rest.buttonLink || rest.button?.link || rest.ctaUrl || rest.buttonUrl || "",
       };
     }
 
@@ -246,12 +250,18 @@ async function mapBlock(block, helpers) {
         cardItems.push(cardItem);
       }
 
+      // Convert subtitle/description to content (richText)
+      const contentText = rest.subtitle || rest.description || "";
+      const content = contentText ? htmlToLexical(contentText) : null;
+
       return {
         blockType: "cardGrid",
         blockLabel: rest.blockLabel || "Card Grid",
         title: rest.title || "",
-        subtitle: rest.subtitle || "",
+        content: content,
         cards: cardItems,
+        buttonLabel: rest.buttonLabel || "",
+        buttonUrl: rest.buttonUrl || "",
       };
     }
 
@@ -346,12 +356,18 @@ async function mapBlock(block, helpers) {
         programItems.push(programItem);
       }
 
+      // Convert subtitle/description to content (richText)
+      const contentText = rest.subtitle || rest.description || "";
+      const content = contentText ? htmlToLexical(contentText) : null;
+
       return {
         blockType: "programs",
         blockLabel: rest.blockLabel || "Programs",
         title: rest.title || "",
-        subtitle: rest.subtitle || "",
+        content: content,
         programs: programItems,
+        buttonLabel: rest.buttonLabel || "",
+        buttonUrl: rest.buttonUrl || "",
       };
     }
 
