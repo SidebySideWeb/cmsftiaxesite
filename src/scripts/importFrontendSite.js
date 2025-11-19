@@ -1270,6 +1270,45 @@ async function extractPageBlocks(page, payload, tenantId, tenantCode) {
       }
     }
     
+    // Check for CTA Banner section (has gradient-purple-orange or CTA Banner comment)
+    const isCtaBannerSection = 
+      sectionTitle?.toLowerCase().includes('cta') ||
+      sectionContent.match(/gradient-purple-orange|cta banner|ctaBanner/i) ||
+      beforeSection.match(/CTA Banner|cta banner/i);
+    
+    if (isCtaBannerSection) {
+      // Extract CTA Banner content
+      const ctaTitleMatch = sectionContent.match(/<h2[^>]*>([^<]+)<\/h2>/i);
+      const ctaDescriptionMatch = sectionContent.match(/<p[^>]*class[^>]*text-xl[^>]*>([^<]+)<\/p>/i);
+      const ctaButtonMatch = sectionContent.match(/<Link[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/Link>/i);
+      
+      const ctaTitle = ctaTitleMatch ? ctaTitleMatch[1].trim() : sectionTitle || "";
+      const ctaDescription = ctaDescriptionMatch ? ctaDescriptionMatch[1].trim() : "";
+      const ctaButtonUrl = ctaButtonMatch ? ctaButtonMatch[1] : "";
+      const ctaButtonLabel = ctaButtonMatch ? ctaButtonMatch[2].trim() : "";
+      
+      // Detect gradient type
+      let gradientType = "purple-orange";
+      if (sectionContent.match(/from-primary via-secondary/i)) {
+        gradientType = "primary-secondary";
+      } else if (sectionContent.match(/from-accent via-primary/i)) {
+        gradientType = "accent-primary";
+      }
+      
+      if (ctaTitle) {
+        rawBlocks.push({
+          type: "ctaBanner",
+          blockLabel: componentName || sectionTitle || "CTA Banner",
+          title: ctaTitle,
+          description: ctaDescription,
+          buttonLabel: ctaButtonLabel,
+          buttonUrl: ctaButtonUrl,
+          backgroundGradient: gradientType,
+        });
+        continue;
+      }
+    }
+    
     // Check for news section (has "news" or "νέα" or "ανακοινώσεις" in title/comment)
     // News sections should NOT be mapped as cardGrid - they fetch posts dynamically
     const isNewsSection = 

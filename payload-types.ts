@@ -284,9 +284,18 @@ export interface Page {
              * Internal label to identify this section (e.g., "Gallery", "Images", "Photo Gallery")
              */
             blockLabel?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
             images?:
               | {
                   image: number | Media;
+                  /**
+                   * Title shown on hover (e.g., "UV Παράσταση")
+                   */
+                  title?: string | null;
+                  /**
+                   * Description shown on hover (e.g., "Μοναδικές στιγμές στη σκηνή")
+                   */
                   caption?: string | null;
                   id?: string | null;
                 }[]
@@ -398,6 +407,20 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'programs';
+          }
+        | {
+            /**
+             * Internal label to identify this section (e.g., "CTA Banner", "Call to Action")
+             */
+            blockLabel?: string | null;
+            title: string;
+            description?: string | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
+            backgroundGradient?: ('purple-orange' | 'primary-secondary' | 'accent-primary') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaBanner';
           }
       )[]
     | null;
@@ -740,10 +763,13 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               blockLabel?: T;
+              title?: T;
+              subtitle?: T;
               images?:
                 | T
                 | {
                     image?: T;
+                    title?: T;
                     caption?: T;
                     id?: T;
                   };
@@ -831,6 +857,18 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        ctaBanner?:
+          | T
+          | {
+              blockLabel?: T;
+              title?: T;
+              description?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
+              backgroundGradient?: T;
               id?: T;
               blockName?: T;
             };
