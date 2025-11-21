@@ -23,6 +23,8 @@
     "scan:pages": "tsx scripts/scan-all-pages.js",
     "scan:pages:enhanced": "tsx scripts/scan-all-pages-enhanced.js",
     "fix:lexical": "tsx scripts/fix-lexical-data.js",
+    "v0:analyze": "node scripts/analyze-v0-components.js",
+    "v0:integrate": "node scripts/integrate-v0-blocks.js",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --no-experimental-strip-types\" pnpm exec playwright test",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
@@ -46,6 +48,9 @@
     "sharp": "0.34.2"
   },
   "devDependencies": {
+    "@babel/parser": "^7.26.0",
+    "@babel/traverse": "^7.26.0",
+    "@babel/types": "^7.26.0",
     "@eslint/eslintrc": "^3.3.1",
     "@playwright/test": "1.56.1",
     "@testing-library/react": "16.3.0",

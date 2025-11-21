@@ -677,6 +677,238 @@ export interface Page {
             blockName?: string | null;
             blockType: 'contactDetails';
           }
+        | {
+            /**
+             * Internal label to identify this section
+             */
+            blockLabel?: string | null;
+            items?:
+              | {
+                  question: string;
+                  answer: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            blockLabel?: string | null;
+            tabs?:
+              | {
+                  label: string;
+                  content: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'tabs';
+          }
+        | {
+            blockLabel?: string | null;
+            /**
+             * YouTube, Vimeo, or direct video URL
+             */
+            videoUrl: string;
+            thumbnail?: (number | null) | Media;
+            title?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            blockLabel?: string | null;
+            slides?:
+              | {
+                  image?: (number | null) | Media;
+                  title?: string | null;
+                  text?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  link?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'slider';
+          }
+        | {
+            blockLabel?: string | null;
+            testimonials?:
+              | {
+                  name: string;
+                  quote: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  avatar?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            blockLabel?: string | null;
+            title?: string | null;
+            logos?:
+              | {
+                  logo: number | Media;
+                  url?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logoCloud';
+          }
+        | {
+            blockLabel?: string | null;
+            title?: string | null;
+            plans?:
+              | {
+                  title: string;
+                  price?: string | null;
+                  features?:
+                    | {
+                        feature?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  buttonLabel?: string | null;
+                  buttonUrl?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'pricingTable';
+          }
+        | {
+            blockLabel?: string | null;
+            title?: string | null;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            fields?:
+              | {
+                  label: string;
+                  name: string;
+                  type?: ('text' | 'email' | 'phone' | 'textarea' | 'select') | null;
+                  required?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            blockLabel?: string | null;
+            /**
+             * Google Maps embed URL or iframe src
+             */
+            mapUrl: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'map';
+          }
+        | {
+            blockLabel?: string | null;
+            title?: string | null;
+            features?:
+              | {
+                  icon?: string | null;
+                  title?: string | null;
+                  description?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureList';
+          }
       )[]
     | null;
   /**
@@ -1153,6 +1385,155 @@ export interface PagesSelect<T extends boolean = true> {
                     title?: T;
                     icon?: T;
                     content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              blockLabel?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        tabs?:
+          | T
+          | {
+              blockLabel?: T;
+              tabs?:
+                | T
+                | {
+                    label?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        video?:
+          | T
+          | {
+              blockLabel?: T;
+              videoUrl?: T;
+              thumbnail?: T;
+              title?: T;
+              id?: T;
+              blockName?: T;
+            };
+        slider?:
+          | T
+          | {
+              blockLabel?: T;
+              slides?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    text?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              blockLabel?: T;
+              testimonials?:
+                | T
+                | {
+                    name?: T;
+                    quote?: T;
+                    avatar?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoCloud?:
+          | T
+          | {
+              blockLabel?: T;
+              title?: T;
+              logos?:
+                | T
+                | {
+                    logo?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricingTable?:
+          | T
+          | {
+              blockLabel?: T;
+              title?: T;
+              plans?:
+                | T
+                | {
+                    title?: T;
+                    price?: T;
+                    features?:
+                      | T
+                      | {
+                          feature?: T;
+                          id?: T;
+                        };
+                    buttonLabel?: T;
+                    buttonUrl?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              blockLabel?: T;
+              title?: T;
+              description?: T;
+              fields?:
+                | T
+                | {
+                    label?: T;
+                    name?: T;
+                    type?: T;
+                    required?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        map?:
+          | T
+          | {
+              blockLabel?: T;
+              mapUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featureList?:
+          | T
+          | {
+              blockLabel?: T;
+              title?: T;
+              features?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
                     id?: T;
                   };
               id?: T;
