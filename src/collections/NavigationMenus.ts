@@ -28,6 +28,48 @@ export const NavigationMenus: CollectionConfig = {
         return data
       },
     ],
+    beforeDelete: [
+      async ({ req, id }) => {
+        // Check if navigation menu is referenced by headers or footers
+        // If so, we should prevent deletion or handle it gracefully
+        try {
+          const headers = await req.payload.find({
+            collection: 'headers',
+            where: {
+              navigationMenu: {
+                equals: id,
+              },
+            },
+            limit: 1,
+          })
+          
+          if (headers.docs.length > 0) {
+            throw new Error('Cannot delete navigation menu: it is referenced by a header. Please remove the reference first.')
+          }
+          
+          const footers = await req.payload.find({
+            collection: 'footers',
+            where: {
+              'footerMenus.menu': {
+                equals: id,
+              },
+            },
+            limit: 1,
+          })
+          
+          if (footers.docs.length > 0) {
+            throw new Error('Cannot delete navigation menu: it is referenced by a footer. Please remove the reference first.')
+          }
+        } catch (error: any) {
+          // If it's our custom error, throw it
+          if (error.message?.includes('Cannot delete')) {
+            throw error
+          }
+          // Otherwise, log and continue (might be a query error, which is okay)
+          console.warn('[NavigationMenus] Error checking references before delete:', error.message)
+        }
+      },
+    ],
   },
   fields: [
     {

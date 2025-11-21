@@ -1,5 +1,5 @@
 import type { Access, Where } from 'payload'
-import { isSuperAdmin, getTenantId, tenantFilterOrAll } from './roles'
+import { isSuperAdmin, getTenantId } from './roles'
 
 /**
  * Access control helper for tenant-aware collections
@@ -7,7 +7,7 @@ import { isSuperAdmin, getTenantId, tenantFilterOrAll } from './roles'
  * Read access:
  * - Public users: can read any document (tenant filtering happens via query params)
  * - Superadmins: can see everything
- * - Others: filtered by tenant
+ * - Others: filtered by tenant (including pages with NULL tenant for backward compatibility)
  * 
  * Create/Update/Delete access:
  * - Superadmins: allowed
@@ -20,9 +20,36 @@ export const tenantReadAccess: Access = ({ req }) => {
     return true
   }
   
+  // Superadmins see everything
+  if (isSuperAdmin(req)) {
+    return true
+  }
+  
   // Authenticated users (admin panel): filter by tenant
-  // Superadmins see everything, others see only their tenant's content
-  return tenantFilterOrAll(req)
+  const tenantId = getTenantId(req.user)
+  
+  // If user has no tenant, deny access
+  if (!tenantId) {
+    return false
+  }
+  
+  // For now, allow users to see pages with their tenant OR pages without a tenant
+  // This handles backward compatibility with pages created before tenant was required
+  // TODO: Assign tenants to orphaned pages and then tighten this filter
+  return {
+    or: [
+      {
+        tenant: {
+          equals: tenantId,
+        },
+      },
+      {
+        tenant: {
+          exists: false,
+        },
+      },
+    ],
+  } as Where
 }
 
 /**

@@ -247,19 +247,9 @@ export interface Page {
              */
             blockLabel?: string | null;
             title?: string | null;
-            subtitle?: string | null;
-            backgroundImage?: (number | null) | Media;
-            ctaLabel?: string | null;
-            ctaUrl?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'hero';
-          }
-        | {
             /**
-             * Internal label to identify this section (e.g., "About", "Features", "Content")
+             * Long text with styling options, bullets, and numbered lists
              */
-            blockLabel?: string | null;
             content?: {
               root: {
                 type: string;
@@ -275,6 +265,42 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            /**
+             * If not uploaded, will use default hero image
+             */
+            backgroundImage?: (number | null) | Media;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            /**
+             * Internal label to identify this section (e.g., "About", "Features", "Content")
+             */
+            blockLabel?: string | null;
+            title?: string | null;
+            /**
+             * Long text with styling options, bullets, and numbered lists
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'richText';
@@ -284,8 +310,32 @@ export interface Page {
              * Internal label to identify this section (e.g., "Gallery", "Images", "Photo Gallery")
              */
             blockLabel?: string | null;
+            /**
+             * If empty, will use default title
+             */
             title?: string | null;
+            /**
+             * If empty, will use default subtitle
+             */
             subtitle?: string | null;
+            /**
+             * Long text with styling options, bullets, and numbered lists
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             images?:
               | {
                   image: number | Media;
@@ -310,9 +360,9 @@ export interface Page {
              */
             blockLabel?: string | null;
             title?: string | null;
-            subtitle?: string | null;
-            image?: (number | null) | Media;
-            imagePosition?: ('left' | 'right') | null;
+            /**
+             * Long text with styling options, bullets, and numbered lists
+             */
             content?: {
               root: {
                 type: string;
@@ -328,6 +378,13 @@ export interface Page {
               };
               [k: string]: unknown;
             } | null;
+            /**
+             * If not uploaded, will use default welcome image
+             */
+            image?: (number | null) | Media;
+            imagePosition?: ('left' | 'right') | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'imageText';
@@ -337,18 +394,67 @@ export interface Page {
              * Internal label to identify this section (e.g., "Programs", "Services", "Features")
              */
             blockLabel?: string | null;
+            /**
+             * If empty, will use default title
+             */
             title?: string | null;
+            /**
+             * If empty, will use default subtitle
+             */
             subtitle?: string | null;
+            /**
+             * Long text with styling options, bullets, and numbered lists
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            /**
+             * Minimum 3 cards required
+             */
             cards?:
               | {
+                  /**
+                   * If not uploaded, will use default program image
+                   */
                   image?: (number | null) | Media;
                   title?: string | null;
-                  description?: string | null;
+                  /**
+                   * Long text with styling options, bullets, and numbered lists
+                   */
+                  content?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
                   buttonLabel?: string | null;
                   buttonUrl?: string | null;
                   id?: string | null;
                 }[]
               | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'cardGrid';
@@ -358,16 +464,45 @@ export interface Page {
              * Internal label to identify this section (e.g., "Sponsors", "Partners")
              */
             blockLabel?: string | null;
+            /**
+             * If empty, will use default title
+             */
             title?: string | null;
+            /**
+             * If empty, will use default subtitle
+             */
             subtitle?: string | null;
+            /**
+             * Long text with styling options, bullets, and numbered lists
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             sponsors?:
               | {
-                  image: number | Media;
+                  /**
+                   * Sponsor logo image
+                   */
+                  image?: (number | null) | Media;
                   title?: string | null;
                   url?: string | null;
                   id?: string | null;
                 }[]
               | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'sponsors';
@@ -378,32 +513,95 @@ export interface Page {
              */
             blockLabel?: string | null;
             title?: string | null;
-            subtitle?: string | null;
+            /**
+             * Long text with styling options, bullets, and numbered lists
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             programs?:
               | {
                   title?: string | null;
                   image?: (number | null) | Media;
-                  description?: string | null;
-                  additionalInfo?: string | null;
+                  /**
+                   * Long text with styling options, bullets, and numbered lists
+                   */
+                  content?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
                   imagePosition?: ('left' | 'right') | null;
-                  schedule?:
-                    | {
-                        day?: string | null;
-                        time?: string | null;
-                        level?: string | null;
-                        id?: string | null;
-                      }[]
-                    | null;
+                  timetable?: {
+                    title?: string | null;
+                    schedule?:
+                      | {
+                          /**
+                           * e.g., Δευτέρα, Τρίτη
+                           */
+                          day?: string | null;
+                          /**
+                           * e.g., 17:00 - 19:00
+                           */
+                          time?: string | null;
+                          /**
+                           * e.g., Αρχάριοι, Μεσαίοι, Προχωρημένοι
+                           */
+                          level?: string | null;
+                          id?: string | null;
+                        }[]
+                      | null;
+                  };
                   coach?: {
+                    /**
+                     * Static title (usually "Προπονητής/τρια")
+                     */
+                    title?: string | null;
                     name?: string | null;
                     photo?: (number | null) | Media;
-                    studies?: string | null;
-                    bio?: string | null;
-                    imagePosition?: ('left' | 'right') | null;
+                    bio?: {
+                      root: {
+                        type: string;
+                        children: {
+                          type: any;
+                          version: number;
+                          [k: string]: unknown;
+                        }[];
+                        direction: ('ltr' | 'rtl') | null;
+                        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                        indent: number;
+                        version: number;
+                      };
+                      [k: string]: unknown;
+                    } | null;
                   };
                   id?: string | null;
                 }[]
               | null;
+            buttonLabel?: string | null;
+            buttonUrl?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'programs';
@@ -414,13 +612,70 @@ export interface Page {
              */
             blockLabel?: string | null;
             title: string;
-            description?: string | null;
+            /**
+             * Long text with styling options, bullets, and numbered lists
+             */
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             buttonLabel?: string | null;
             buttonUrl?: string | null;
             backgroundGradient?: ('purple-orange' | 'primary-secondary' | 'accent-primary') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'ctaBanner';
+          }
+        | {
+            /**
+             * Internal label to identify this section (e.g., "Contact Details", "Registration Info")
+             */
+            blockLabel?: string | null;
+            items?:
+              | {
+                  /**
+                   * Static title (not editable by default, e.g., "Διεύθυνση", "Τηλέφωνο")
+                   */
+                  title?: string | null;
+                  /**
+                   * Static icon type (not editable)
+                   */
+                  icon?: ('location' | 'phone' | 'email' | 'clock') | null;
+                  /**
+                   * Editable content for this contact item
+                   */
+                  content?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactDetails';
           }
       )[]
     | null;
@@ -744,10 +999,10 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               blockLabel?: T;
               title?: T;
-              subtitle?: T;
+              content?: T;
               backgroundImage?: T;
-              ctaLabel?: T;
-              ctaUrl?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
               id?: T;
               blockName?: T;
             };
@@ -755,7 +1010,10 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               blockLabel?: T;
+              title?: T;
               content?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
               id?: T;
               blockName?: T;
             };
@@ -765,6 +1023,7 @@ export interface PagesSelect<T extends boolean = true> {
               blockLabel?: T;
               title?: T;
               subtitle?: T;
+              content?: T;
               images?:
                 | T
                 | {
@@ -781,10 +1040,11 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               blockLabel?: T;
               title?: T;
-              subtitle?: T;
+              content?: T;
               image?: T;
               imagePosition?: T;
-              content?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
               id?: T;
               blockName?: T;
             };
@@ -794,16 +1054,19 @@ export interface PagesSelect<T extends boolean = true> {
               blockLabel?: T;
               title?: T;
               subtitle?: T;
+              content?: T;
               cards?:
                 | T
                 | {
                     image?: T;
                     title?: T;
-                    description?: T;
+                    content?: T;
                     buttonLabel?: T;
                     buttonUrl?: T;
                     id?: T;
                   };
+              buttonLabel?: T;
+              buttonUrl?: T;
               id?: T;
               blockName?: T;
             };
@@ -813,6 +1076,7 @@ export interface PagesSelect<T extends boolean = true> {
               blockLabel?: T;
               title?: T;
               subtitle?: T;
+              content?: T;
               sponsors?:
                 | T
                 | {
@@ -821,6 +1085,8 @@ export interface PagesSelect<T extends boolean = true> {
                     url?: T;
                     id?: T;
                   };
+              buttonLabel?: T;
+              buttonUrl?: T;
               id?: T;
               blockName?: T;
             };
@@ -829,34 +1095,39 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               blockLabel?: T;
               title?: T;
-              subtitle?: T;
+              content?: T;
               programs?:
                 | T
                 | {
                     title?: T;
                     image?: T;
-                    description?: T;
-                    additionalInfo?: T;
+                    content?: T;
                     imagePosition?: T;
-                    schedule?:
+                    timetable?:
                       | T
                       | {
-                          day?: T;
-                          time?: T;
-                          level?: T;
-                          id?: T;
+                          title?: T;
+                          schedule?:
+                            | T
+                            | {
+                                day?: T;
+                                time?: T;
+                                level?: T;
+                                id?: T;
+                              };
                         };
                     coach?:
                       | T
                       | {
+                          title?: T;
                           name?: T;
                           photo?: T;
-                          studies?: T;
                           bio?: T;
-                          imagePosition?: T;
                         };
                     id?: T;
                   };
+              buttonLabel?: T;
+              buttonUrl?: T;
               id?: T;
               blockName?: T;
             };
@@ -865,10 +1136,25 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               blockLabel?: T;
               title?: T;
-              description?: T;
+              content?: T;
               buttonLabel?: T;
               buttonUrl?: T;
               backgroundGradient?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactDetails?:
+          | T
+          | {
+              blockLabel?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    icon?: T;
+                    content?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
