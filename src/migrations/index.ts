@@ -7,6 +7,7 @@ import * as migration_20250117_rename_block_columns from './20250117_rename_bloc
 import * as migration_20250117_convert_content_to_jsonb from './20250117_convert_content_to_jsonb';
 import * as migration_20250117_fix_contact_details_schema from './20250117_fix_contact_details_schema';
 import * as migration_20250117_convert_programs_content from './20250117_convert_programs_content';
+import * as migration_20250117_create_v0_blocks_tables from './20250117_create_v0_blocks_tables';
 
 export const migrations = [
   {
@@ -53,5 +54,10 @@ export const migrations = [
     up: migration_20250117_convert_programs_content.up,
     down: migration_20250117_convert_programs_content.down,
     name: '20250117_convert_programs_content'
+  },
+  {
+    up: migration_20250117_create_v0_blocks_tables.up,
+    down: migration_20250117_create_v0_blocks_tables.down,
+    name: '20250117_create_v0_blocks_tables'
   },
 ];

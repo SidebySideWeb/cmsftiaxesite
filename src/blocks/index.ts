@@ -47,10 +47,8 @@ addBlock(ProgramsBlock, 'ProgramsBlock')
 addBlock(CtaBannerBlock, 'CtaBannerBlock')
 addBlock(ContactDetailsBlock, 'ContactDetailsBlock')
 
-// Add new V0 blocks (TEMPORARILY DISABLED - database tables don't exist yet)
-// TODO: Run migrations to create tables, then re-enable these blocks
-// These blocks need database tables created via: pnpm payload migrate
-/*
+// Add new V0 blocks
+// Note: Run migration 20250117_create_v0_blocks_tables first to create database tables
 try {
   addBlock(FAQBlock, 'FAQBlock')
   addBlock(TabsBlock, 'TabsBlock')
@@ -66,6 +64,5 @@ try {
   console.error('[Blocks] Error loading V0 blocks:', error)
   // Continue with existing blocks only
 }
-*/
 
 export const sharedBlocks: Block[] = blocks
