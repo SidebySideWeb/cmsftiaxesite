@@ -6,7 +6,8 @@
 import fs from 'fs'
 import path from 'path'
 import { parse } from '@babel/parser'
-import traverse, { type NodePath } from '@babel/traverse'
+// @ts-expect-error - @babel/traverse types are complex
+import traverse from '@babel/traverse'
 import * as t from '@babel/types'
 import type {
   ComponentNode,

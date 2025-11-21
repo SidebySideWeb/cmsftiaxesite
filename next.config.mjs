@@ -23,6 +23,14 @@ const nextConfig = {
       '@': path.resolve(__dirname, './src'),
     }
 
+    // Exclude v0-analyzer from build (it's a script, not part of the app)
+    webpackConfig.module = webpackConfig.module || {}
+    webpackConfig.module.rules = webpackConfig.module.rules || []
+    webpackConfig.module.rules.push({
+      test: /v0-analyzer/,
+      use: 'ignore-loader',
+    })
+
     return webpackConfig
   },
 }
