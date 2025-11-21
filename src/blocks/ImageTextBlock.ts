@@ -36,6 +36,9 @@ export const ImageTextBlock: Block = {
       type: 'upload',
       relationTo: 'media',
       label: 'Image',
+      admin: {
+        description: 'If not uploaded, will use default welcome image',
+      },
     },
     {
       name: 'imagePosition',

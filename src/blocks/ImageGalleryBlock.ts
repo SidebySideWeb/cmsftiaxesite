@@ -17,6 +17,17 @@ export const ImageGalleryBlock: Block = {
       name: 'title',
       type: 'text',
       label: 'Title',
+      admin: {
+        description: 'If empty, will use default title',
+      },
+    },
+    {
+      name: 'subtitle',
+      type: 'text',
+      label: 'Subtitle',
+      admin: {
+        description: 'If empty, will use default subtitle',
+      },
     },
     {
       name: 'content',
@@ -61,16 +72,6 @@ export const ImageGalleryBlock: Block = {
           },
         },
       ],
-    },
-    {
-      name: 'buttonLabel',
-      type: 'text',
-      label: 'Button Label',
-    },
-    {
-      name: 'buttonUrl',
-      type: 'text',
-      label: 'Button URL',
     },
   ],
 }

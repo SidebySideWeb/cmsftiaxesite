@@ -36,6 +36,9 @@ export const HeroBlock: Block = {
       type: 'upload',
       relationTo: 'media',
       label: 'Background Image',
+      admin: {
+        description: 'If not uploaded, will use default hero image',
+      },
     },
     {
       name: 'buttonLabel',

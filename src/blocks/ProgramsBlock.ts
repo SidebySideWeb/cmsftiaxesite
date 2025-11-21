@@ -72,24 +72,46 @@ export const ProgramsBlock: Block = {
           defaultValue: 'left',
         },
         {
-          name: 'schedule',
-          type: 'array',
-          label: 'Schedule',
+          name: 'timetable',
+          type: 'group',
+          label: 'Timetable',
           fields: [
             {
-              name: 'day',
+              name: 'title',
               type: 'text',
-              label: 'Day',
+              label: 'Timetable Title',
+              defaultValue: 'Εβδομαδιαίο Πρόγραμμα',
             },
             {
-              name: 'time',
-              type: 'text',
-              label: 'Time',
-            },
-            {
-              name: 'level',
-              type: 'text',
-              label: 'Level',
+              name: 'schedule',
+              type: 'array',
+              label: 'Schedule Entries',
+              fields: [
+                {
+                  name: 'day',
+                  type: 'text',
+                  label: 'Day',
+                  admin: {
+                    description: 'e.g., Δευτέρα, Τρίτη',
+                  },
+                },
+                {
+                  name: 'time',
+                  type: 'text',
+                  label: 'Time',
+                  admin: {
+                    description: 'e.g., 17:00 - 19:00',
+                  },
+                },
+                {
+                  name: 'level',
+                  type: 'text',
+                  label: 'Level',
+                  admin: {
+                    description: 'e.g., Αρχάριοι, Μεσαίοι, Προχωρημένοι',
+                  },
+                },
+              ],
             },
           ],
         },
@@ -98,6 +120,15 @@ export const ProgramsBlock: Block = {
           type: 'group',
           label: 'Coach Information',
           fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Coach Section Title',
+              defaultValue: 'Προπονητής/τρια',
+              admin: {
+                description: 'Static title (usually "Προπονητής/τρια")',
+              },
+            },
             {
               name: 'name',
               type: 'text',
@@ -110,24 +141,14 @@ export const ProgramsBlock: Block = {
               label: 'Coach Photo',
             },
             {
-              name: 'studies',
-              type: 'text',
-              label: 'Studies/Qualifications',
-            },
-            {
               name: 'bio',
-              type: 'textarea',
-              label: 'Bio',
-            },
-            {
-              name: 'imagePosition',
-              type: 'select',
-              label: 'Coach Image Position',
-              options: [
-                { label: 'Left', value: 'left' },
-                { label: 'Right', value: 'right' },
-              ],
-              defaultValue: 'left',
+              type: 'richText',
+              label: 'Coach Bio/Description',
+              editor: lexicalEditor({
+                features: ({ defaultFeatures }) => [
+                  ...defaultFeatures,
+                ],
+              }),
             },
           ],
         },

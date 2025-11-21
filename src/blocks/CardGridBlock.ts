@@ -17,6 +17,17 @@ export const CardGridBlock: Block = {
       name: 'title',
       type: 'text',
       label: 'Title',
+      admin: {
+        description: 'If empty, will use default title',
+      },
+    },
+    {
+      name: 'subtitle',
+      type: 'text',
+      label: 'Subtitle',
+      admin: {
+        description: 'If empty, will use default subtitle',
+      },
     },
     {
       name: 'content',
@@ -35,13 +46,19 @@ export const CardGridBlock: Block = {
       name: 'cards',
       type: 'array',
       label: 'Cards',
-      minRows: 1,
+      minRows: 3,
+      admin: {
+        description: 'Minimum 3 cards required',
+      },
       fields: [
         {
           name: 'image',
           type: 'upload',
           relationTo: 'media',
           label: 'Card Image',
+          admin: {
+            description: 'If not uploaded, will use default program image',
+          },
         },
         {
           name: 'title',

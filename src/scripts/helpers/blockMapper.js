@@ -268,6 +268,18 @@ async function mapBlock(block, helpers) {
         cardItems.push(cardItem);
       }
 
+      // Ensure minimum 3 cards (requirement from user)
+      while (cardItems.length < 3) {
+        cardItems.push({
+          image: null,
+          title: "",
+          content: null,
+          description: "",
+          buttonLabel: "",
+          buttonUrl: "",
+        });
+      }
+
       // Convert subtitle/description to content (richText)
       const contentText = rest.subtitle || rest.description || "";
       const content = contentText ? htmlToLexical(contentText) : null;
@@ -276,6 +288,7 @@ async function mapBlock(block, helpers) {
         blockType: "cardGrid",
         blockLabel: rest.blockLabel || "Card Grid",
         title: rest.title || "",
+        subtitle: rest.subtitle || "",
         content: content,
         cards: cardItems,
         buttonLabel: rest.buttonLabel || "",

@@ -7,6 +7,7 @@ import { CardGridBlock } from './CardGridBlock'
 import { SponsorsBlock } from './SponsorsBlock'
 import { ProgramsBlock } from './ProgramsBlock'
 import { CtaBannerBlock } from './CtaBannerBlock'
+import { ContactDetailsBlock } from './ContactDetailsBlock'
 import type { Block } from 'payload'
 
 // Ensure all blocks are defined and have slugs
@@ -19,5 +20,6 @@ if (CardGridBlock && CardGridBlock.slug) blocks.push(CardGridBlock)
 if (SponsorsBlock && SponsorsBlock.slug) blocks.push(SponsorsBlock)
 if (ProgramsBlock && ProgramsBlock.slug) blocks.push(ProgramsBlock)
 if (CtaBannerBlock && CtaBannerBlock.slug) blocks.push(CtaBannerBlock)
+if (ContactDetailsBlock && ContactDetailsBlock.slug) blocks.push(ContactDetailsBlock)
 
 export const sharedBlocks: Block[] = blocks

@@ -1,5 +1,5 @@
 import type { Access, Where } from 'payload'
-import { isSuperAdmin, getTenantId } from './roles'
+import { isSuperAdmin, getTenantId, tenantFilterOrAll } from './roles'
 
 /**
  * Access control helper for tenant-aware collections
@@ -13,11 +13,16 @@ import { isSuperAdmin, getTenantId } from './roles'
  * - Superadmins: allowed
  * - Others: only if req.user.tenant equals the document's tenant
  */
-export const tenantReadAccess: Access = () => {
-  // TEMPORARY: Allow public read access for ALL documents
-  // This is a workaround to ensure frontend can access CMS data
-  // TODO: Re-enable tenant filtering once we confirm this works
-  return true
+export const tenantReadAccess: Access = ({ req }) => {
+  // Public users (frontend API calls): allow read access
+  // Frontend will filter by tenant using query params
+  if (!req.user) {
+    return true
+  }
+  
+  // Authenticated users (admin panel): filter by tenant
+  // Superadmins see everything, others see only their tenant's content
+  return tenantFilterOrAll(req)
 }
 
 /**

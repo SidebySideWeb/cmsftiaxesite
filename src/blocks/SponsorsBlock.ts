@@ -17,6 +17,17 @@ export const SponsorsBlock: Block = {
       name: 'title',
       type: 'text',
       label: 'Title',
+      admin: {
+        description: 'If empty, will use default title',
+      },
+    },
+    {
+      name: 'subtitle',
+      type: 'text',
+      label: 'Subtitle',
+      admin: {
+        description: 'If empty, will use default subtitle',
+      },
     },
     {
       name: 'content',
@@ -41,8 +52,10 @@ export const SponsorsBlock: Block = {
           name: 'image',
           type: 'upload',
           relationTo: 'media',
-          required: true,
           label: 'Sponsor Logo',
+          admin: {
+            description: 'Sponsor logo image',
+          },
         },
         {
           name: 'title',
