@@ -47,8 +47,10 @@ addBlock(ProgramsBlock, 'ProgramsBlock')
 addBlock(CtaBannerBlock, 'CtaBannerBlock')
 addBlock(ContactDetailsBlock, 'ContactDetailsBlock')
 
-// Add new V0 blocks (temporarily disabled if causing white screen)
-// Uncomment these one by one to identify which block causes issues
+// Add new V0 blocks (TEMPORARILY DISABLED - database tables don't exist yet)
+// TODO: Run migrations to create tables, then re-enable these blocks
+// These blocks need database tables created via: pnpm payload migrate
+/*
 try {
   addBlock(FAQBlock, 'FAQBlock')
   addBlock(TabsBlock, 'TabsBlock')
@@ -64,5 +66,6 @@ try {
   console.error('[Blocks] Error loading V0 blocks:', error)
   // Continue with existing blocks only
 }
+*/
 
 export const sharedBlocks: Block[] = blocks
