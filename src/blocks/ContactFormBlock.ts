@@ -3,6 +3,10 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const ContactFormBlock: Block = {
   slug: 'contactForm',
+  labels: {
+    singular: 'Contact Form',
+    plural: 'Contact Forms',
+  },
   fields: [
     {
       name: 'blockLabel',

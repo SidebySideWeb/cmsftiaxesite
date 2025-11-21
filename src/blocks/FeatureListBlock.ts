@@ -3,6 +3,10 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const FeatureListBlock: Block = {
   slug: 'featureList',
+  labels: {
+    singular: 'Feature List',
+    plural: 'Feature Lists',
+  },
   fields: [
     {
       name: 'blockLabel',

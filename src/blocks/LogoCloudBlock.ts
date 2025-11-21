@@ -2,6 +2,10 @@ import type { Block } from 'payload'
 
 export const LogoCloudBlock: Block = {
   slug: 'logoCloud',
+  labels: {
+    singular: 'Logo Cloud',
+    plural: 'Logo Clouds',
+  },
   fields: [
     {
       name: 'blockLabel',

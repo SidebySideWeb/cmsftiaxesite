@@ -3,6 +3,10 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const SliderBlock: Block = {
   slug: 'slider',
+  labels: {
+    singular: 'Slider',
+    plural: 'Sliders',
+  },
   fields: [
     {
       name: 'blockLabel',

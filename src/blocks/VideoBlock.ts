@@ -2,6 +2,10 @@ import type { Block } from 'payload'
 
 export const VideoBlock: Block = {
   slug: 'video',
+  labels: {
+    singular: 'Video',
+    plural: 'Videos',
+  },
   fields: [
     {
       name: 'blockLabel',

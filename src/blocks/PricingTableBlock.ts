@@ -2,6 +2,10 @@ import type { Block } from 'payload'
 
 export const PricingTableBlock: Block = {
   slug: 'pricingTable',
+  labels: {
+    singular: 'Pricing Table',
+    plural: 'Pricing Tables',
+  },
   fields: [
     {
       name: 'blockLabel',

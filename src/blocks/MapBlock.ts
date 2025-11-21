@@ -2,6 +2,10 @@ import type { Block } from 'payload'
 
 export const MapBlock: Block = {
   slug: 'map',
+  labels: {
+    singular: 'Map',
+    plural: 'Maps',
+  },
   fields: [
     {
       name: 'blockLabel',

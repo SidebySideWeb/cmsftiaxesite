@@ -3,6 +3,10 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const TabsBlock: Block = {
   slug: 'tabs',
+  labels: {
+    singular: 'Tabs',
+    plural: 'Tabs',
+  },
   fields: [
     {
       name: 'blockLabel',
