@@ -22,24 +22,47 @@ import type { Block } from 'payload'
 
 // Ensure all blocks are defined and have slugs
 const blocks: Block[] = []
-if (HeroBlock && HeroBlock.slug) blocks.push(HeroBlock)
-if (RichTextBlock && RichTextBlock.slug) blocks.push(RichTextBlock)
-if (ImageGalleryBlock && ImageGalleryBlock.slug) blocks.push(ImageGalleryBlock)
-if (ImageTextBlock && ImageTextBlock.slug) blocks.push(ImageTextBlock)
-if (CardGridBlock && CardGridBlock.slug) blocks.push(CardGridBlock)
-if (SponsorsBlock && SponsorsBlock.slug) blocks.push(SponsorsBlock)
-if (ProgramsBlock && ProgramsBlock.slug) blocks.push(ProgramsBlock)
-if (CtaBannerBlock && CtaBannerBlock.slug) blocks.push(CtaBannerBlock)
-if (ContactDetailsBlock && ContactDetailsBlock.slug) blocks.push(ContactDetailsBlock)
-if (FAQBlock && FAQBlock.slug) blocks.push(FAQBlock)
-if (TabsBlock && TabsBlock.slug) blocks.push(TabsBlock)
-if (VideoBlock && VideoBlock.slug) blocks.push(VideoBlock)
-if (SliderBlock && SliderBlock.slug) blocks.push(SliderBlock)
-if (TestimonialsBlock && TestimonialsBlock.slug) blocks.push(TestimonialsBlock)
-if (LogoCloudBlock && LogoCloudBlock.slug) blocks.push(LogoCloudBlock)
-if (PricingTableBlock && PricingTableBlock.slug) blocks.push(PricingTableBlock)
-if (ContactFormBlock && ContactFormBlock.slug) blocks.push(ContactFormBlock)
-if (MapBlock && MapBlock.slug) blocks.push(MapBlock)
-if (FeatureListBlock && FeatureListBlock.slug) blocks.push(FeatureListBlock)
+
+// Helper to safely add blocks with error handling
+function addBlock(block: Block | undefined, name: string): void {
+  try {
+    if (block && block.slug) {
+      blocks.push(block)
+    } else {
+      console.warn(`[Blocks] Skipping ${name}: missing or invalid`)
+    }
+  } catch (error) {
+    console.error(`[Blocks] Error loading ${name}:`, error)
+  }
+}
+
+// Add existing blocks
+addBlock(HeroBlock, 'HeroBlock')
+addBlock(RichTextBlock, 'RichTextBlock')
+addBlock(ImageGalleryBlock, 'ImageGalleryBlock')
+addBlock(ImageTextBlock, 'ImageTextBlock')
+addBlock(CardGridBlock, 'CardGridBlock')
+addBlock(SponsorsBlock, 'SponsorsBlock')
+addBlock(ProgramsBlock, 'ProgramsBlock')
+addBlock(CtaBannerBlock, 'CtaBannerBlock')
+addBlock(ContactDetailsBlock, 'ContactDetailsBlock')
+
+// Add new V0 blocks (temporarily disabled if causing white screen)
+// Uncomment these one by one to identify which block causes issues
+try {
+  addBlock(FAQBlock, 'FAQBlock')
+  addBlock(TabsBlock, 'TabsBlock')
+  addBlock(VideoBlock, 'VideoBlock')
+  addBlock(SliderBlock, 'SliderBlock')
+  addBlock(TestimonialsBlock, 'TestimonialsBlock')
+  addBlock(LogoCloudBlock, 'LogoCloudBlock')
+  addBlock(PricingTableBlock, 'PricingTableBlock')
+  addBlock(ContactFormBlock, 'ContactFormBlock')
+  addBlock(MapBlock, 'MapBlock')
+  addBlock(FeatureListBlock, 'FeatureListBlock')
+} catch (error) {
+  console.error('[Blocks] Error loading V0 blocks:', error)
+  // Continue with existing blocks only
+}
 
 export const sharedBlocks: Block[] = blocks
