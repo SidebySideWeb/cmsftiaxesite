@@ -8,6 +8,7 @@ import { SponsorsBlock } from './SponsorsBlock'
 import { ProgramsBlock } from './ProgramsBlock'
 import { CtaBannerBlock } from './CtaBannerBlock'
 import { ContactDetailsBlock } from './ContactDetailsBlock'
+import { NewsBlock } from './NewsBlock'
 import { FAQBlock } from './FAQBlock'
 import { TabsBlock } from './TabsBlock'
 import { VideoBlock } from './VideoBlock'
@@ -46,6 +47,7 @@ addBlock(SponsorsBlock, 'SponsorsBlock')
 addBlock(ProgramsBlock, 'ProgramsBlock')
 addBlock(CtaBannerBlock, 'CtaBannerBlock')
 addBlock(ContactDetailsBlock, 'ContactDetailsBlock')
+addBlock(NewsBlock, 'NewsBlock')
 
 // Add new V0 blocks
 // Note: Run migration 20250117_create_v0_blocks_tables first to create database tables

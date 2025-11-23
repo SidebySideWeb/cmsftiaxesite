@@ -58,14 +58,9 @@ export const SponsorsBlock: Block = {
           },
         },
         {
-          name: 'title',
-          type: 'text',
-          label: 'Sponsor Name',
-        },
-        {
           name: 'url',
           type: 'text',
-          label: 'Sponsor Website URL',
+          label: 'Website URL',
         },
       ],
     },

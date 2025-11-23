@@ -8,6 +8,7 @@ import * as migration_20250117_convert_content_to_jsonb from './20250117_convert
 import * as migration_20250117_fix_contact_details_schema from './20250117_fix_contact_details_schema';
 import * as migration_20250117_convert_programs_content from './20250117_convert_programs_content';
 import * as migration_20250117_create_v0_blocks_tables from './20250117_create_v0_blocks_tables';
+import * as migration_20250118_update_homepage_blocks from './20250118_update_homepage_blocks';
 
 export const migrations = [
   {
@@ -59,5 +60,10 @@ export const migrations = [
     up: migration_20250117_create_v0_blocks_tables.up,
     down: migration_20250117_create_v0_blocks_tables.down,
     name: '20250117_create_v0_blocks_tables'
+  },
+  {
+    up: migration_20250118_update_homepage_blocks.up,
+    down: migration_20250118_update_homepage_blocks.down,
+    name: '20250118_update_homepage_blocks'
   },
 ];

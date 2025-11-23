@@ -58,17 +58,17 @@ export const ImageGalleryBlock: Block = {
         {
           name: 'title',
           type: 'text',
-          label: 'Image Title',
+          label: 'Title',
           admin: {
-            description: 'Title shown on hover (e.g., "UV Παράσταση")',
+            description: 'Title shown on hover',
           },
         },
         {
-          name: 'caption',
+          name: 'subtitle',
           type: 'text',
-          label: 'Caption/Description',
+          label: 'Subtitle',
           admin: {
-            description: 'Description shown on hover (e.g., "Μοναδικές στιγμές στη σκηνή")',
+            description: 'Subtitle shown on hover',
           },
         },
       ],

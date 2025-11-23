@@ -1,5 +1,4 @@
 import type { Block } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const CardGridBlock: Block = {
   slug: 'cardGrid',
@@ -30,19 +29,6 @@ export const CardGridBlock: Block = {
       },
     },
     {
-      name: 'content',
-      type: 'richText',
-      label: 'Content',
-      admin: {
-        description: 'Long text with styling options, bullets, and numbered lists',
-      },
-      editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [
-          ...defaultFeatures,
-        ],
-      }),
-    },
-    {
       name: 'cards',
       type: 'array',
       label: 'Cards',
@@ -64,41 +50,32 @@ export const CardGridBlock: Block = {
           name: 'title',
           type: 'text',
           label: 'Card Title',
+          required: true,
         },
         {
-          name: 'content',
-          type: 'richText',
-          label: 'Card Content',
-          admin: {
-            description: 'Long text with styling options, bullets, and numbered lists',
-          },
-          editor: lexicalEditor({
-            features: ({ defaultFeatures }) => [
-              ...defaultFeatures,
-            ],
-          }),
+          name: 'description',
+          type: 'textarea',
+          label: 'Description',
         },
         {
-          name: 'buttonLabel',
-          type: 'text',
-          label: 'Button Label',
-        },
-        {
-          name: 'buttonUrl',
-          type: 'text',
-          label: 'Button URL',
+          name: 'cta',
+          type: 'group',
+          label: 'CTA Button',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              label: 'Button Text',
+              defaultValue: 'Μάθετε περισσότερα',
+            },
+            {
+              name: 'url',
+              type: 'text',
+              label: 'Button URL',
+            },
+          ],
         },
       ],
-    },
-    {
-      name: 'buttonLabel',
-      type: 'text',
-      label: 'Button Label',
-    },
-    {
-      name: 'buttonUrl',
-      type: 'text',
-      label: 'Button URL',
     },
   ],
 }
